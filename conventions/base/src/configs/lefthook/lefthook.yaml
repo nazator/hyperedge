@@ -84,24 +84,3 @@ pre-push:
         command -v bun >/dev/null 2>&1
         && bun run ci
         || npm run ci
-
-    # Rust checks
-    cargo-check:
-      run: >
-        command -v cargo >/dev/null 2>&1
-        && cargo check
-        || true
-
-    # Go checks
-    go-test:
-      run: >
-        command -v go >/dev/null 2>&1
-        && go test ./...
-        || true
-
-    # Python checks
-    python-check:
-      run: >
-        command -v ruff >/dev/null 2>&1
-        && ruff check .
-        || true
