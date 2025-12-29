@@ -1,0 +1,107 @@
+# === COMMIT MESSAGE ===
+commit-msg:
+  commands:
+    commitlint:
+      run: >
+        command -v bun >/dev/null 2>&1
+        && bun commitlint --edit .git/COMMIT_EDITMSG
+        || npx commitlint --edit .git/COMMIT_EDITMSG
+
+# === PRE-COMMIT ===
+pre-commit:
+  parallel: true
+  commands:
+
+    # JS / TS / JSON / CSS (Biome)
+    biome:
+      glob: "*.{cjs,js,mjs,jsx,ts,tsx,json,jsonc,css}"
+      run: >
+        command -v bun >/dev/null 2>&1
+        && bun run biome check --write {staged_files}
+        || npx biome check --write {staged_files}
+      stage_fixed: true
+
+    # Formatting (Markdown / YAML / TOML)
+    dprint:
+      glob: "*.{md,scss,sass,toml,yml,yaml}"
+      run: >
+        command -v bun >/dev/null 2>&1
+        && bun run dprint fmt {staged_files}
+        || dprint fmt {staged_files}
+      stage_fixed: true
+
+    # Python
+    python-format:
+      glob: "*.py"
+      run: >
+        command -v ruff >/dev/null 2>&1
+        && ruff format {staged_files}
+        || true
+      stage_fixed: true
+
+    # Rust
+    rustfmt:
+      glob: "*.rs"
+      run: >
+        command -v cargo >/dev/null 2>&1
+        && cargo fmt
+        || true
+
+    # Go
+    gofmt:
+      glob: "*.go"
+      run: >
+        command -v go >/dev/null 2>&1
+        && gofmt -w {staged_files}
+        || true
+      stage_fixed: true
+
+    # Zig
+    zigfmt:
+      glob: "*.zig"
+      run: >
+        command -v zig >/dev/null 2>&1
+        && zig fmt {staged_files}
+        || true
+      stage_fixed: true
+
+    # C / C++ (clang-format)
+    clang-format:
+      glob: "*.{c,h,cpp,hpp}"
+      run: >
+        command -v clang-format >/dev/null 2>&1
+        && clang-format -i {staged_files}
+        || true
+      stage_fixed: true
+
+# === PRE-PUSH ===
+pre-push:
+  commands:
+
+    # Full CI (single source of truth)
+    ci:
+      run: >
+        command -v bun >/dev/null 2>&1
+        && bun run ci
+        || npm run ci
+
+    # Rust checks
+    cargo-check:
+      run: >
+        command -v cargo >/dev/null 2>&1
+        && cargo check
+        || true
+
+    # Go checks
+    go-test:
+      run: >
+        command -v go >/dev/null 2>&1
+        && go test ./...
+        || true
+
+    # Python checks
+    python-check:
+      run: >
+        command -v ruff >/dev/null 2>&1
+        && ruff check .
+        || true
