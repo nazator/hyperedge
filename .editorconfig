@@ -1,0 +1,96 @@
+# UNIVERSAL EDITORCONFIG
+#
+# Purpose:
+# - Maintain consistent basic coding styles across different editors, languages, and OSs,
+#   without conflicting with specific formatters or language conventions.
+#
+# Notes:
+# - EditorConfig serves as the baseline. Tools such as biome, rustfmt, gofmt,
+#   dprint, black, etc., remain the ultimate source of truth.
+#
+# Created and curated by Nazator
+# https://nazator.com
+# https://github.com/nazator/hyperedge
+
+
+root = true
+
+# DEFAULT (ALL FILES)
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+indent_style = space
+indent_size = 2
+max_line_length = 100
+
+# MARKDOWN / TEXT
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+[*.{txt,adoc,rst}]
+max_line_length = off
+
+# YAML / TOML / JSON
+[*.{yml,yaml,toml,json,jsonc}]
+indent_style = space
+indent_size = 2
+
+# JAVASCRIPT / TYPESCRIPT
+[*.{js,cjs,mjs,jsx,ts,tsx}]
+indent_style = space
+indent_size = 2
+
+# PYTHON
+[*.py]
+indent_style = space
+indent_size = 4
+max_line_length = 88
+
+# RUST
+[*.rs]
+indent_style = space
+indent_size = 4
+max_line_length = 100
+
+# GO
+[*.go]
+indent_style = tab
+indent_size = 4
+
+# ZIG
+[*.zig]
+indent_style = space
+indent_size = 4
+
+# C / C++
+[*.{c,h,cpp,hpp}]
+indent_style = space
+indent_size = 4
+
+# C# / DOTNET
+[*.{cs,csx}]
+indent_style = space
+indent_size = 4
+
+# KOTLIN / JVM
+[*.{kt,kts,java,scala}]
+indent_style = space
+indent_size = 4
+
+# SHELL
+[*.{sh,bash,zsh}]
+indent_style = space
+indent_size = 2
+
+# MAKEFILE (SPECIAL CASE)
+[Makefile]
+indent_style = tab
+
+# CONFIG / CI
+[*.{ini,conf,properties,editorconfig}]
+indent_style = space
+indent_size = 2
