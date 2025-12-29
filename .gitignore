@@ -1,0 +1,257 @@
+# UNIVERSAL .gitignore
+#
+# Purpose:
+#   This file is designed as a universal .gitignore for both monorepos and
+#   single-repos, providing support for multi-language, multi-toolchain,
+#   and multi-OS environments.
+#
+# Supported Languages (non-exhaustive):
+#   - JavaScript / TypeScript / Node.js
+#   - Python
+#   - Rust
+#   - Go
+#   - Zig
+#   - C / C++
+#   - C# / .NET
+#   - Kotlin / JVM
+#
+# Supported Environments:
+#   - Linux (including Arch-based)
+#   - macOS
+#   - Windows
+#
+# Design Principles:
+#   - Ignore build artifacts, caches, temporary files, and local tooling state.
+#   - Keep source code, configs, and reproducible definitions tracked.
+#   - Safe for monorepos, CI/CD, and cross-editor workflows.
+#
+# Notes:
+#   - Certain lock files (e.g., Cargo.lock, go.sum, etc.) may be adjusted
+#     depending on the project type (library vs. application).
+#   - This file is opinionated yet conservative (avoiding over-ignoring).
+#
+# Created and curated by Nazator
+# https://nazator.com
+# https://github.com/nazator/hyperedge
+
+# === GLOBAL / UNIVERSAL ===
+
+# Environment variables
+.env
+.env.*
+.env.*.local
+.env.local
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.old
+*.orig
+
+# Logs
+*.log
+logs/
+log/
+
+# Coverage & reports
+coverage/
+*.lcov
+*.clover
+*.coverage
+.coverage.*
+
+# Cache
+.cache/
+.cache-loader/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# === OS-SPECIFIC ===
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# === IDEs / EDITORS ===
+
+# JetBrains
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Vim / Neovim
+*.swp
+*.swo
+*.swn
+Session.vim
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+
+# === NODE / JS / TS ECOSYSTEM ===
+
+node_modules/
+dist/
+build/
+.output/
+.turbo/
+.nx/
+.vercel/
+.netlify/
+.wrangler/
+.vinxi/
+.astro/
+
+# TypeScript
+*.tsbuildinfo
+
+# Package managers
+package-lock.json
+npm-shrinkwrap.json
+yarn.lock
+pnpm-lock.yaml
+bun.lock
+bun.lockb
+shrinkwrap.yaml
+
+# === PYTHON ===
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Tools
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+# === RUST ===
+
+target/
+Cargo.lock
+**/*.rs.bk
+
+# === GO ===
+
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Go build
+/bin/
+/pkg/
+go.work.sum
+
+# === ZIG ===
+
+zig-cache/
+zig-out/
+*.zig-cache
+
+# === C / C++ ===
+
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.exe
+*.out
+
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+compile_commands.json
+
+# === C# / .NET ===
+
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.csproj.user
+.vs/
+
+# === KOTLIN / JVM ===
+
+# Gradle
+.gradle/
+build/
+
+# IntelliJ
+out/
+
+# === TEST / BENCH / PROFILING ===
+
+*.prof
+*.perf
+*.trace
+*.bench
+
+# === CI / TOOLING ===
+
+# Turbo / Nx
+.turbo/
+.nx/
+
+# Kazra tooling
+.rigra
+.pakra
+
+# Wakatime
+.wakatime-project
+
+# === CUSTOM / PROJECT-SPECIFIC ===
+
+# Misc
+.temp/
+temp/
+gitignore
